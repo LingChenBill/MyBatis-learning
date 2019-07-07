@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 属性：引入application.properties文件。-->
+    <properties resource="application.properties"/>
+
+    <!-- 类型命名：定义别名 -->
+    <typeAliases>
+        <typeAlias alias="role" type="com.lc.chapter2.pojo.Role"/>
+    </typeAliases>
+
+    <typeHandlers>
+        <!--&lt;!&ndash;性别枚举类型处理器。&ndash;&gt;-->
+        <!--<typeHandler handler="org.apache.ibatis.type.EnumOrdinalTypeHandler"-->
+                     <!--javaType="com.lc.chapter2.enums.Sex"/>-->
+        <typeHandler handler="com.lc.chapter2.typeHandler.SexEnumTypeHandler"
+                     javaType="com.lc.chapter2.enums.Sex"/>
+    </typeHandlers>
+
+    <!-- 配置环境：定义数据库信息.默认使用development数据库构建环境 -->
+    <environments default="development">
+         <!-- 环境变量 -->
+        <environment id="development">
+            <!-- 事务管理器：采用jdbc事务管理 -->
+            <transactionManager type="JDBC"/>
+             <!-- 数据源 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+                <!--<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_all_all?useSSL=false&amp;serverTimezone=UTC"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>-->
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 映射器 -->
+    <mappers>
+        <!--正常的roleMapper映射器-->
+        <!--<mapper resource="com/lc/chapter2/mapper/roleMapper.xml"/>-->
+        <!--使用自定义typeHandler.-->
+        <mapper resource="com/lc/chapter2/mapper/roleMapper-typeHandler.xml"/>
+        <mapper resource="com/lc/chapter2/mapper/userMapper.xml"/>
+    </mappers>
+</configuration>
