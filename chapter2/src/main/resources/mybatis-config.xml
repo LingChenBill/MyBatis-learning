@@ -42,9 +42,9 @@
     <!-- 映射器 -->
     <mappers>
         <!--正常的roleMapper映射器-->
-        <!--<mapper resource="com/lc/chapter2/mapper/roleMapper.xml"/>-->
+        <mapper resource="com/lc/chapter2/mapper/roleMapper.xml"/>
         <!--使用自定义typeHandler.-->
-        <mapper resource="com/lc/chapter2/mapper/roleMapper-typeHandler.xml"/>
+        <!--<mapper resource="com/lc/chapter2/mapper/roleMapper-typeHandler.xml"/>-->
         <mapper resource="com/lc/chapter2/mapper/userMapper.xml"/>
     </mappers>
 </configuration>

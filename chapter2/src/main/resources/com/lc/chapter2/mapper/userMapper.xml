@@ -30,4 +30,9 @@
          #{sex, typeHandler=com.lc.chapter2.typeHandler.SexEnumTypeHandler},
          #{email}, #{mobile}, #{note})
     </insert>
+
+    <select id="countFirstName" parameterType="string" resultType="int">
+        select count(*) as total from t_user where user_name like concat(#{firstName}, '%')
+    </select>
+
 </mapper>
