@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.chapter2.mapper.StudentSelfCardMapper">
+
+    <resultMap id="studentSelfCardMap" type="com.lc.chapter2.pojo.StudentSelfCard">
+        <id column="id" property="id"/>
+        <result column="student_id" property="studentId"/>
+        <result column="native" property="nativeStr"/>
+        <result column="issue_date" property="issueDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="note" property="note"/>
+    </resultMap>
+
+    <select id="findStuentSelfCardByStudentId" parameterType="int" resultMap="studentSelfCardMap">
+        select id, student_id, native, issue_date, end_date, note
+        from t_student_selfcard
+        where student_id = #{studentId}
+    </select>
+
+</mapper>

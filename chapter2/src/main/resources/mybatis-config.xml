@@ -46,5 +46,12 @@
         <!--使用自定义typeHandler.-->
         <!--<mapper resource="com/lc/chapter2/mapper/roleMapper-typeHandler.xml"/>-->
         <mapper resource="com/lc/chapter2/mapper/userMapper.xml"/>
+        <!--一对一对应，一对多对应关系-->
+        <mapper resource="com/lc/chapter2/mapper/StudentMapper.xml"/>
+        <mapper resource="com/lc/chapter2/mapper/StudentSelfCardMapper.xml"/>
+
+        <mapper resource="com/lc/chapter2/mapper/LectureMapper.xml"/>
+        <mapper resource="com/lc/chapter2/mapper/StudentLectureMapper.xml"/>
+
     </mappers>
 </configuration>

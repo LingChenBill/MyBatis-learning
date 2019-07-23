@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.chapter2.mapper.StudentMapper">
+
+    <resultMap id="studentMap" type="com.lc.chapter2.pojo.Student">
+        <id column="id" property="id"/>
+        <result column="cnname" property="cnName"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"
+                javaType="com.lc.chapter2.enums.Sex"
+                typeHandler="com.lc.chapter2.typeHandler.SexEnumTypeHandler"/>
+        <result column="selfcard_no" property="selfCardNo"/>
+        <result column="note" property="note"/>
+        <!--一对一对应关系：学生与学生证-->
+        <association property="studentSelfCard" column="id"
+                     select="com.lc.chapter2.mapper.StudentSelfCardMapper.findStuentSelfCardByStudentId"/>
+        <!--一对多对应关系：学生与课程-->
+        <collection property="studentLectureList" column="id"
+                    select="com.lc.chapter2.mapper.StudentLectureMapper.findStudentLectureByStuId"/>
+    </resultMap>
+
+    <select id="getStudent" parameterType="int" resultMap="studentMap">
+        select id, cnname, sex, selfcard_no, note
+        from t_student
+        where id = #{id}
+    </select>
+
+</mapper>
